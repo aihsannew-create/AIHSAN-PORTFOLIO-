@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Unbounded', 'Syne', sans-serif;
+  --font-unbounded: 'Unbounded', sans-serif;
+  --font-editorial: 'Playfair Display', Georgia, serif;
+  --font-signature: 'Caveat', cursive;
+  --font-italiana: 'Italiana', Georgia, serif;
+  --font-bebas: 'Bebas Neue', Impact, sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-syne: 'Syne', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+.font-signature {
+  font-family: 'Caveat', cursive;
+}
+.font-editorial {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+.font-italiana {
+  font-family: 'Italiana', Georgia, serif;
+}
+.font-bebas {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  letter-spacing: 0.05em;
+}
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+.font-unbounded {
+  font-family: 'Unbounded', sans-serif;
+}
+.font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #060608;
+    color: #f4f4f6;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  ::selection {
+    background-color: #3b82f6;
+    color: #ffffff;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #08080c;
+}
+::-webkit-scrollbar-thumb {
+  background: #23232e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+/* Subtle background noise texture effect */
+.noise-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(18, 18, 24, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(26, 26, 36, 0.85);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Marquee keyframes */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Subtle float animation for hero elements */
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-subtle-float {
+  animation: subtle-float 6s ease-in-out infinite;
+}
+
+/* Gradient text shine */
+@keyframes text-shine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.animate-text-shine {
+  background-size: 200% auto;
+  animation: text-shine 4s linear infinite;
+}
+
+/* Left Open, Right Close animation */
+@keyframes slide-left-in-right-out {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  15% {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  85% {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+.animate-left-open-right-close {
+  animation: slide-left-in-right-out 3.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes sweep-line {
+  0% {
+    left: 0%;
+    width: 0%;
+    opacity: 0;
+  }
+  20% {
+    left: 0%;
+    width: 50%;
+    opacity: 1;
+  }
+  80% {
+    left: 50%;
+    width: 50%;
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    width: 0%;
+    opacity: 0;
+  }
+}
+
+.animate-sweep-line {
+  animation: sweep-line 3.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+    overflow-x: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
